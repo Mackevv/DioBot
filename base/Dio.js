@@ -1,11 +1,21 @@
-const { Client, Collection } = require('discord.js');
+const { Client, Intents, Collection } = require('discord.js');
+const intentsList = [
+    'GUILDS',
+    'GUILD_MESSAGES',
+    'GUILD_PRESENCES',
+    'GUILD_MEMBERS',
+    'DIRECT_MESSAGES'
+];
+const intents = new Intents(intentsList);
 
 const fs = require('fs');
 const path = require('path');
 
 class Dio extends Client {
     constructor() {
-        super();
+        super({
+            ws: { intents: intents }
+        });
         this.config = require('../config');
         this.commands = new Collection();
     }
