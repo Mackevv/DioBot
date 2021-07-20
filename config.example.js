@@ -1,7 +1,6 @@
 module.exports = {
     prefix: "x", // Your bot prefix
     token: "xxxx", // Your bot token
-    clientId: "xxxx", // Your bot id
     // Your discord configuration
     owner: {
         username: "Mackev",

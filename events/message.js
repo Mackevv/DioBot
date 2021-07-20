@@ -52,7 +52,7 @@ module.exports = class {
                 }
 
                 for (const botPermission of botPermissions) {
-                    const bot = message.guild.member(config.clientId);
+                    const bot = message.guild.member(this.client.user.id);
                     if (!bot.hasPermission(botPermission)) {
                         return message.reply("I do not have the required permissions to execute this command.");
                     }
