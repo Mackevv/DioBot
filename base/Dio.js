@@ -23,13 +23,23 @@ class Dio extends Client {
     commandLoader(commandPath, commandCategory, commandName) {
         try {
             const props = new (require(`../${commandPath}${path.sep}${commandName}`))(this);
-            console.log(`Loading command: ${props.options.name}`);
+
+            if (typeof props.options.name === 'string') {
+                props.options.name = [props.options.name];
+            }
+            
+            console.log(`Loading command: ${props.options.name[0]}`);
+            
             props.settings.location = commandPath;
             props.settings.category = commandCategory;
+            
             if (props.init) {
                 props.init(this);
             }
-            this.commands.set(props.options.name, props);
+            
+            for (const alias of props.options.name) {
+                this.commands.set(alias, props);
+            }
             return false;
         } catch (e) {
             return `Unable to load command ${commandName}: ${e}`;

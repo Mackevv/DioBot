@@ -4,8 +4,8 @@ const { MessageEmbed } = require('discord.js');
 class PingCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: "ping",
-			description: "Get client latency",
+			name: ["ping", "latency"],
+			description: "Get bot latency",
 			botPermissions: ["SEND_MESSAGES"]
 		});
 	}
