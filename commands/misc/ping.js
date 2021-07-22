@@ -6,7 +6,7 @@ class PingCommand extends Command {
 		super(client, {
 			name: ["ping", "latency"],
 			description: "Get bot latency",
-			botPermissions: ["SEND_MESSAGES"]
+			botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"]
 		});
 	}
 
