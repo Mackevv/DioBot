@@ -21,7 +21,7 @@ class PingCommand extends Command {
                 const ping = resultMsg.createdTimestamp - message.createdTimestamp;
                 
                 const resultEmbed = new MessageEmbed()
-                    .setColor(this.client.config.embed.color)
+                    .defaultColor()
                     .addFields(
                         { name: "Bot latency :", value: `${ping} ms` },
                         { name: "API latency :", value: `${this.client.ws.ping} ms` }

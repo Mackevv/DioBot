@@ -1,3 +1,5 @@
+require('./util/extenders');
+
 const Dio = require('./base/Dio.js');
 const client = new Dio();
 
