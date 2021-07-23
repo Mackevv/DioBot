@@ -1,5 +1,27 @@
 const { Message, MessageEmbed } = require('discord.js');
 const config = require('../config');
+const emotes = require('../emotes');
+
+// Add custom success and error message with prefix emote
+Message.prototype.success = function(content) {
+    const emote = emotes.checkmark;
+    return this.channel.send(`${emote} ${content}`);
+}
+
+Message.prototype.error = function(content) {
+    const emote = emotes.wrongmark;
+    return this.channel.send(`${emote} ${content}`);
+}
+
+Message.prototype.replySuccess = function(content) {
+    const emote = emotes.checkmark;
+    return this.channel.send(`${emote} **${this.author.username}**, ${content}`);
+}
+
+Message.prototype.replyError = function(content) {
+    const emote = emotes.wrongmark;
+    return this.channel.send(`${emote} **${this.author.username}**, ${content}`);
+}
 
 // Add shortcut methods for default embed configuration
 MessageEmbed.prototype.defaultColor = function() {
