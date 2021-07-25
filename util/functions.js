@@ -1,4 +1,38 @@
 module.exports = {
+    async getUser(string, client) {
+        if (!string || typeof string !== 'string') return;
+        
+        let user = client.users.cache.get(string)
+            || client.users.cache.find(u => u.tag === string);
+        
+        const mentionExp = string.match(/^<@!?(\d+)>$/);
+        
+        if (mentionExp) {
+            user = client.users.cache.get(mentionExp[1]);
+            return user;
+        }
+        
+        return user;
+    },
+     
+    async getMember(string, guild) {
+        if (!string || typeof string !== 'string') return;
+        
+        guild = await guild.fetch();
+        
+        let member = guild.members.cache.get(string)
+            || guild.members.cache.find(m => m.user.tag === string);
+            
+        const mentionExp = string.match(/^<@!?(\d+)>$/);
+        
+        if (mentionExp) {
+            member = guild.members.cache.get(mentionExp[1]);
+            return member;
+        }
+        
+        return member;
+    },
+    
     formatDate(d) {
         const months = [
             'January',
