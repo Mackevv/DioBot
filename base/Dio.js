@@ -18,6 +18,7 @@ class Dio extends Client {
         });
         this.config = require('../config');
         this.commands = new Collection();
+        this.functions = require('../util/functions');
     }
 
     commandLoader(commandPath, commandCategory, commandName) {
