@@ -16,14 +16,14 @@ class Dio extends Client {
         super({
             ws: { intents: intents }
         });
-        this.config = require('../config');
+        this.config = require('@root/config');
         this.commands = new Collection();
-        this.functions = require('../util/functions');
+        this.functions = require('@util/functions');
     }
 
     commandLoader(commandPath, commandCategory, commandName) {
         try {
-            const props = new (require(`../${commandPath}${path.sep}${commandName}`))(this);
+            const props = new (require(`@root/${commandPath}${path.sep}${commandName}`))(this);
 
             if (typeof props.options.name === 'string') {
                 props.options.name = [props.options.name];
@@ -73,9 +73,9 @@ class Dio extends Client {
         for (const file of files) {
             const name = file.split(".")[0];
             console.log(`Loading event: ${name}`);
-            const event = new (require(`../${dir}${path.sep}${file}`))(this);
+            const event = new (require(`@root/${dir}${path.sep}${file}`))(this);
             this.on(name, (...args) => event.run(...args));
-            delete require.cache[require.resolve(`../${dir}${path.sep}${file}`)];
+            delete require.cache[require.resolve(`@root/${dir}${path.sep}${file}`)];
         }
     }
 

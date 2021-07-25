@@ -1,6 +1,6 @@
 const { Message, MessageEmbed } = require('discord.js');
-const config = require('../config');
-const emotes = require('../emotes');
+const config = require('@root/config');
+const emotes = require('@root/emotes');
 
 // Add custom success and error message with prefix emote
 Message.prototype.success = function(content) {

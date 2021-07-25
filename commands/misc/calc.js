@@ -1,4 +1,4 @@
-const Command = require("../../base/Command.js");
+const Command = require("@base/Command.js");
 const { MessageEmbed } = require('discord.js');
 const { evaluate } = require('mathjs');
 
@@ -13,12 +13,12 @@ class CalcCommand extends Command {
 
     run (message, args) {
         let calc = args.join(" ");
-        
+
         if (!calc) return message.replyError("you did not specify any calculation.");
 
         if (calc.includes('×')) {
             calc = calc.replace('×', '*');
-        } 
+        }
         if (calc.includes('x')) {
             calc = calc.replace('x', '*');
         }
@@ -33,7 +33,7 @@ class CalcCommand extends Command {
             console.error(e);
             return message.replyError("this expression is not correct or contains invalid characters.");
         }
-        
+
         const embed = new MessageEmbed()
             .defaultColor()
             .addFields(

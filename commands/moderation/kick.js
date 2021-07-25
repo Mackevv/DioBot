@@ -1,4 +1,4 @@
-const Command = require("../../base/Command.js");
+const Command = require("@base/Command.js");
 
 class KickCommand extends Command {
     constructor(client) {
@@ -22,7 +22,7 @@ class KickCommand extends Command {
         }
 
         const targetMember = await this.client.functions.getMember(args[0], message.guild);
-        
+
         if (!targetMember) return message.replyError("please provide a valid member mention, id or tag.");
         if (targetMember.id === message.author.id) return message.replyError("you cannot kick yourself.");
         if (targetMember.id === this.client.user.id) {
@@ -39,11 +39,11 @@ class KickCommand extends Command {
         if (message.guild.ownerID !== message.author.id && !(author > targetMemberRolePos)) {
             return message.replyError("you cannot kick a member with a higher or equal role than you.");
         }
-        
+
         if (!targetMember.kickable) {
             return message.error(`I Dio, cannot kick user **${targetMember.user.tag}**.`)
         }
-        
+
         if (reasonBool) {
             await targetMember.send(`You were kicked from **${message.guild.name}** for the following reason : ${reason}.`)
                 .catch((e) => console.error(e));
@@ -51,7 +51,7 @@ class KickCommand extends Command {
             await targetMember.send(`You were kicked from **${message.guild.name}**.`)
                 .catch((e) => console.error(e));
         }
-        
+
         targetMember.kick(reason).then(() => {
             message.success(`**${targetMember.user.tag}** was successfully kicked.`);
         }).catch((e) => {

@@ -1,25 +1,25 @@
-const Command = require("../../base/Command.js");
+const Command = require("@base/Command.js");
 const { MessageEmbed } = require('discord.js');
 
 class PingCommand extends Command {
-	constructor(client) {
-		super(client, {
-			name: ["ping", "latency"],
-			description: "Get bot latency",
-			botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"]
-		});
-	}
+    constructor(client) {
+        super(client, {
+            name: ["ping", "latency"],
+            description: "Get bot latency",
+            botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"]
+        });
+    }
 
     run (message) {
         const embed = new MessageEmbed()
             .setColor(this.client.config.embed.color)
             .setDescription(":stopwatch: **The World !**")
         ;
-            
+
         message.channel.send(embed).then((resultMsg) => {
             setTimeout(() => {
                 const ping = resultMsg.createdTimestamp - message.createdTimestamp;
-                
+
                 const resultEmbed = new MessageEmbed()
                     .defaultColor()
                     .addFields(
@@ -27,7 +27,7 @@ class PingCommand extends Command {
                         { name: "API latency :", value: `${this.client.ws.ping} ms` }
                     )
                 ;
-                
+
                 resultMsg.edit(resultEmbed);
             }, 1300);
         });

@@ -1,6 +1,7 @@
-require('./util/extenders');
+require('module-alias/register');
+require('@util/extenders');
 
-const Dio = require('./base/Dio.js');
+const Dio = require('@base/Dio.js');
 const client = new Dio();
 
 client.loadCommands('./commands/');
