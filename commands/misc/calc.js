@@ -11,7 +11,7 @@ class CalcCommand extends Command {
         });
     }
 
-    run (message, args) {
+    run(message, args) {
         let calc = args.join(" ");
 
         if (!calc) return message.replyError("you did not specify any calculation.");
@@ -40,8 +40,7 @@ class CalcCommand extends Command {
                 { name: "Calculation :", value: `\`\`\`${args.join(" ")}\`\`\`` },
                 { name: "Result :", value: result }
             )
-            .defaultFooter(this.options.name[0])
-        ;
+            .defaultFooter(this.options.name[0]);
 
         message.channel.send(embed);
     }

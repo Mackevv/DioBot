@@ -28,16 +28,16 @@ class Dio extends Client {
             if (typeof props.options.name === 'string') {
                 props.options.name = [props.options.name];
             }
-            
+
             console.log(`Loading command: ${props.options.name[0]}`);
-            
+
             props.settings.location = commandPath;
             props.settings.category = commandCategory;
-            
+
             if (props.init) {
                 props.init(this);
             }
-            
+
             for (const alias of props.options.name) {
                 this.commands.set(alias, props);
             }
@@ -51,7 +51,7 @@ class Dio extends Client {
         if (!dir) return console.log("Please specify the root directory for commands files");
         if (!fs.existsSync(dir)) return console.log(`There is no directory called "${dir}"`);
         if (!dir.endsWith(path.sep)) dir += path.sep;
-        
+
         const categories = fs.readdirSync(path.join(path.dirname(__dirname), dir));
         for (const category of categories) {
             const files = fs.readdirSync(path.join(dir, category));
@@ -63,12 +63,12 @@ class Dio extends Client {
             }
         }
     }
-    
+
     loadEvents = (dir) => {
         if (!dir) return console.log("Please specify the root directory for events files");
         if (!fs.existsSync(dir)) return console.log(`There is no directory called "${dir}"`);
         if (!dir.endsWith(path.sep)) dir += path.sep;
-        
+
         const files = fs.readdirSync(path.join(path.dirname(__dirname), dir));
         for (const file of files) {
             const name = file.split(".")[0];

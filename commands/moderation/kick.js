@@ -10,7 +10,7 @@ class KickCommand extends Command {
         });
     }
 
-    async run (message, args) {
+    async run(message, args) {
         if (!args[0]) {
             return message.replyError("please provide someone to kick.");
         }
@@ -30,7 +30,7 @@ class KickCommand extends Command {
                 setTimeout(() => {
                     msg.delete();
                 }, 6000);
-            })
+            });
         }
 
         // Verify if the message author has a higher role than the target user
@@ -45,11 +45,9 @@ class KickCommand extends Command {
         }
 
         if (reasonBool) {
-            await targetMember.send(`You were kicked from **${message.guild.name}** for the following reason : ${reason}.`)
-                .catch((e) => console.error(e));
+            await targetMember.send(`You were kicked from **${message.guild.name}** for the following reason : ${reason}.`).catch((e) => console.error(e));
         } else {
-            await targetMember.send(`You were kicked from **${message.guild.name}**.`)
-                .catch((e) => console.error(e));
+            await targetMember.send(`You were kicked from **${message.guild.name}**.`).catch((e) => console.error(e));
         }
 
         targetMember.kick(reason).then(() => {

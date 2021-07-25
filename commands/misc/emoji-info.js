@@ -11,7 +11,7 @@ class EmojiInfoCommand extends Command {
         });
     }
 
-    run (message, args) {
+    run(message, args) {
         if (!args[0]) return message.replyError("please provide an emoji.");
 
         const emoji = message.guild.emojis.cache.find(
@@ -34,14 +34,13 @@ class EmojiInfoCommand extends Command {
             .setTitle("Emoji Info")
             .setDescription(`You can download this emoji by clicking [here](${link})`)
             .addFields(
-                { name: 'Emoji :', value: `${emoji}`, inline: false},
+                { name: 'Emoji :', value: `${emoji}`, inline: false },
                 { name: 'Name :', value: `\`${emoji.name}\``, inline: false },
                 { name: 'ID :', value: `\`${emoji.id}\``, inline: false },
-                { name: 'Identifier :', value: `\`${mention}\``, inline: false},
-                { name: 'Creation date :', value: `\`${this.client.functions.formatDate(emoji.createdAt)}\``, inline: false}
+                { name: 'Identifier :', value: `\`${mention}\``, inline: false },
+                { name: 'Creation date :', value: `\`${this.client.functions.formatDate(emoji.createdAt)}\``, inline: false }
             )
-            .defaultFooter(this.options.name[0])
-        ;
+            .defaultFooter(this.options.name[0]);
 
         message.channel.send(embed);
     }

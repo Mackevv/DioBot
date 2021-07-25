@@ -9,6 +9,6 @@ module.exports = class Command {
     }) {
         this.client = client;
         this.options = { name, description, permissions, botPermissions, permissionError, guildOnly };
-        this.settings = { };
+        this.settings = {};
     }
 };

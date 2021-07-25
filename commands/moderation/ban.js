@@ -10,7 +10,7 @@ class BanCommand extends Command {
 		});
 	}
 
-	async run (message, args) {
+	async run(message, args) {
 		if (!args[0]) {
 			return message.replyError("please provide someone to ban.");
 		}
@@ -30,7 +30,7 @@ class BanCommand extends Command {
 				setTimeout(() => {
 					msg.delete();
 				}, 6000);
-			})
+			});
 		}
 
 		// Verify if the message author has a higher role than the target user
@@ -48,11 +48,9 @@ class BanCommand extends Command {
 		}
 
 		if (reasonBool) {
-			await targetUser.send(`You were banned from **${message.guild.name}** for the following reason : ${reason}.`)
-				.catch((e) => console.error(e));
+			await targetUser.send(`You were banned from **${message.guild.name}** for the following reason : ${reason}.`).catch((e) => console.error(e));
 		} else {
-			await targetUser.send(`You were banned from **${message.guild.name}**.`)
-				.catch((e) => console.error(e));
+			await targetUser.send(`You were banned from **${message.guild.name}**.`).catch((e) => console.error(e));
 		}
 
 		message.guild.members.ban(targetUser, { reason }).then(() => {

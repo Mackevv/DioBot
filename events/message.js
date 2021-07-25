@@ -3,7 +3,7 @@ module.exports = class {
         this.client = client;
     }
 
-    async run (message) {
+    async run(message) {
         try {
             const client = this.client;
             const config = this.client.config;
@@ -57,15 +57,15 @@ module.exports = class {
                         return message.reply("I do not have the required permissions to execute this command.");
                     }
                 }
-                
+
                 if (guildOnly && message.channel.type === 'dm') {
                     return message.reply("you can't use this command in direct message.");
                 }
-                
+
                 if (cmd.settings.category === 'owner' && message.author.id !== config.owner.id) {
                     return;
                 }
-                
+
                 await cmd.run(message, args);
             }
         } catch (e) {
