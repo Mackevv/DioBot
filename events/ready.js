@@ -1,5 +1,3 @@
-const Command = require('../base/Command.js');
-
 module.exports = class {
     constructor(client) {
         this.client = client;
