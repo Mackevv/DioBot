@@ -1,7 +1,7 @@
 module.exports = class Command {
     constructor(client, {
         name,
-        description = '',
+        description = null,
         permissions = [],
         botPermissions = [],
         permissionError = null,
