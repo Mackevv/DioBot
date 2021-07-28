@@ -19,6 +19,7 @@ class Dio extends Client {
         this.config = require('@root/config');
         this.commands = new Collection();
         this.functions = require('@util/functions');
+        this.emotes = require('@root/emotes.json');
     }
 
     commandLoader(commandPath, commandCategory, commandName) {

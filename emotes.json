@@ -1,4 +1,10 @@
 {
     "checkmark": "<:checkmark:866066160764321823>",
-    "wrongmark": "<:wrongmark:866214065867980851>"
+    "wrongmark": "<:wrongmark:866214065867980851>",
+    "status": {
+        "online": "<:online:869681260778385439>",
+        "dnd": "<:dnd:869681067597131796>",
+        "idle": "<:idle:869681598843461632>",
+        "offline": "<:offline:869681547182231583>"
+    }
 }
