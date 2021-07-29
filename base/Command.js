@@ -1,6 +1,7 @@
 module.exports = class Command {
     constructor(client, {
         name,
+        aliases = [],
         description = null,
         permissions = [],
         botPermissions = [],
@@ -8,7 +9,7 @@ module.exports = class Command {
         guildOnly = false
     }) {
         this.client = client;
-        this.options = { name, description, permissions, botPermissions, permissionError, guildOnly };
+        this.options = { name, aliases, description, permissions, botPermissions, permissionError, guildOnly };
         this.settings = {};
     }
 };

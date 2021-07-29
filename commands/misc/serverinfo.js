@@ -4,7 +4,8 @@ const { MessageEmbed } = require('discord.js')
 class ServerInfoCommand extends Command {
     constructor(client) {
         super(client, {
-            name: ["serverinfo", "server-info", "si"],
+            name: "serverinfo",
+            aliases: ["server-info", "si"],
             description: "Get information about the current server or a specific server",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             guildOnly: true

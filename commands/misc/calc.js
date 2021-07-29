@@ -5,7 +5,8 @@ const { evaluate } = require('mathjs');
 class CalcCommand extends Command {
     constructor(client) {
         super(client, {
-            name: ["calculate", "calc"],
+            name: "calc",
+            aliases: "calculate",
             description: "Perform a basic calculation between two or more numbers",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"]
         });

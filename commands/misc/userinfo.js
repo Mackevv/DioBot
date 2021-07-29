@@ -4,7 +4,8 @@ const { MessageEmbed } = require('discord.js');
 class UserInfoCommand extends Command {
     constructor(client) {
         super(client, {
-            name: ["userinfo", "user-info", "ui"],
+            name: "userinfo",
+            aliases: ["user-info", "ui"],
             description: "Get yours or someone user information",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             guildOnly: true

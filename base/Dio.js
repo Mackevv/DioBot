@@ -18,6 +18,7 @@ class Dio extends Client {
         });
         this.config = require('@root/config');
         this.commands = new Collection();
+        this.aliases = new Collection();
         this.functions = require('@util/functions');
         this.emotes = require('@root/emotes.json');
     }
@@ -25,12 +26,11 @@ class Dio extends Client {
     commandLoader(commandPath, commandCategory, commandName) {
         try {
             const props = new (require(`@root/${commandPath}${path.sep}${commandName}`))(this);
+            console.log(`Loading command: ${props.options.name}`);
 
-            if (typeof props.options.name === 'string') {
-                props.options.name = [props.options.name];
+            if (typeof props.options.aliases === 'string') {
+                props.options.aliases = [props.options.aliases];
             }
-
-            console.log(`Loading command: ${props.options.name[0]}`);
 
             props.settings.location = commandPath;
             props.settings.category = commandCategory;
@@ -39,9 +39,11 @@ class Dio extends Client {
                 props.init(this);
             }
 
-            for (const alias of props.options.name) {
-                this.commands.set(alias, props);
+            this.commands.set(props.options.name, props);
+            for (const alias of props.options.aliases) {
+                this.aliases.set(alias, props.options.name);
             }
+
             return false;
         } catch (e) {
             return `Unable to load command ${commandName}: ${e}`;

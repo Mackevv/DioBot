@@ -13,7 +13,7 @@ module.exports = class {
 
             const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
             const command = args.shift().toLowerCase();
-            const cmd = client.commands.get(command);
+            const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
 
             if (cmd) {
                 const options = cmd.options;

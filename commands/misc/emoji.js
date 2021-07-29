@@ -4,7 +4,8 @@ const { MessageEmbed } = require('discord.js');
 class EmojiInfoCommand extends Command {
     constructor(client) {
         super(client, {
-            name: ["emojiinfo", "emoji", "emoteinfo", "emote"],
+            name: "emoji",
+            aliases: ["emojiinfo", "emoteinfo", "emote"],
             description: "Get information about a server emote",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             guildOnly: true
@@ -40,7 +41,7 @@ class EmojiInfoCommand extends Command {
                 { name: 'Identifier :', value: `\`${mention}\``, inline: false },
                 { name: 'Creation date :', value: `\`${this.client.functions.formatDate(emoji.createdAt)}\``, inline: false }
             )
-            .defaultFooter(this.options.name[0]);
+            .defaultFooter(this.options.name);
 
         message.channel.send(embed);
     }
