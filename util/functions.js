@@ -68,5 +68,21 @@ module.exports = {
         const seconds = ('0' + d.getSeconds()).slice('-2');
 
         return `${day}, ${date} ${month} ${year} at ${hours}:${minutes}:${seconds}`
+    },
+
+    ucfirst(string) {
+        if (!string || typeof string !== 'string') return;
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+
+    help(string, options = {}) {
+        if (!string || typeof string !== 'string') return;
+        if (options) {
+            for (const option in options) {
+                const optionExp = new RegExp(`{{${option}}}`, 'g');
+                string = string.replace(optionExp, options[option]);
+            }
+        }
+        return string;
     }
 }

@@ -1,0 +1,42 @@
+{
+    "info": {
+        "ping": {
+            "USAGE": "{{prefix}}ping",
+            "EXAMPLES": "{{prefix}}ping\n{{prefix}}latency"
+        },
+        "emoji": {
+            "USAGE": "{{prefix}}emoji <emoji>",
+            "EXAMPLES": "{{prefix}}emoji <:konodioda:820247120329441332>\n{{prefix}}emoji konodioda\n{{prefix}}emoji 820247120329441332\n{{prefix}}emojiinfo <:konodioda:820247120329441332>\n{{prefix}}emote <:konodioda:820247120329441332>\n{{prefix}}emoteinfo <:konodioda:820247120329441332>"
+        },
+        "help": {
+            "USAGE": "{{prefix}}help <?category|command>",
+            "EXAMPLES": "{{prefix}}help\n{{prefix}}h\n{{prefix}}help moderation\n{{prefix}}help ban"
+        },
+        "serverinfo": {
+            "USAGE": "{{prefix}}serverinfo <?server>",
+            "EXAMPLES": "{{prefix}}serverinfo\n{{prefix}}si\n{{prefix}}server-info\n{{prefix}}serverinfo 758059414669361242",
+            "NOTES": "The bot cannot display information of a server it is not a part of. If no parameter is specified, the bot will display the information of the current server."
+        },
+        "userinfo": {
+            "USAGE": "{{prefix}}userinfo <?user>",
+            "EXAMPLES": "{{prefix}}userinfo\n {{prefix}}ui\n{{prefix}}user-info\n{{prefix}}userinfo <@770575412501282826>\n{{prefix}}userinfo 770575412501282826\n{{prefix}}userinfo Dio#2446",
+            "NOTES": "If no parameter is specified, the bot will display your user information."
+        }
+    },
+    "moderation": {
+        "ban": {
+            "USAGE": "{{prefix}}ban <user> <?reason>",
+            "EXAMPLES": "{{prefix}}ban <@{{authorId}}>\n{{prefix}}ban {{authorId}}\n{{prefix}}ban {{authorTag}}\n{{prefix}}ban Joseph#2707 You're next, Jotaro!"
+        },
+        "kick": {
+            "USAGE": "{{prefix}}kick <user> <?reason>",
+            "EXAMPLES": "{{prefix}}kick <@{{authorId}}>\n{{prefix}}kick {{authorId}}\n{{prefix}}kick {{authorTag}}\n{{prefix}}kick Joseph#2707 You're next, Jotaro!"
+        }
+    },
+    "utility": {
+        "calc": {
+            "USAGE": "{{prefix}}calc <expression>",
+            "EXAMPLES": "{{prefix}}calc 1 + 1\n{{prefix}}calc 20 × 2 - 8\n{{prefix}}calculate (5 x 9) / 10"
+        }
+    }
+}
