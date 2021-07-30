@@ -6,7 +6,7 @@ class UserInfoCommand extends Command {
         super(client, {
             name: "userinfo",
             aliases: ["user-info", "ui"],
-            description: "Get yours or someone user information",
+            description: "Display yours or someone user information",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             guildOnly: true
         });
@@ -21,7 +21,7 @@ class UserInfoCommand extends Command {
             idle: `${this.client.emotes.status.idle} Idle`,
             offline: `${this.client.emotes.status.offline} Offline`
         }
-        
+
         const targetMember = args[0] ? await functions.getMember(args[0], message.guild) : message.guild.member(message.author);
         if (!targetMember) {
             return message.replyError("please provide a valid member mention, id or tag.")
@@ -41,12 +41,12 @@ class UserInfoCommand extends Command {
 
         const embed = new MessageEmbed()
             .defaultColor()
-            .setAuthor(targetMember.user.tag, targetMember.user.displayAvatarURL({ dynamic: true}))
+            .setAuthor(targetMember.user.tag, targetMember.user.displayAvatarURL({ dynamic: true }))
             .setThumbnail(targetMember.user.displayAvatarURL({ dynamic: true }))
             .addFields(
                 { name: 'ID', value: targetMember.id, inline: true },
                 { name: 'Bot', value: targetMember.user.bot ? 'Yes' : 'No', inline: true },
-                { name: 'Nickname', value: targetMember.nickname ? targetMember.nickname : 'None' , inline: true },
+                { name: 'Nickname', value: targetMember.nickname ? targetMember.nickname : 'None', inline: true },
                 { name: 'Status', value: status[targetMember.presence.status], inline: false },
                 { name: 'Custom Status', value: customStatus },
                 { name: 'Activity', value: activity },
@@ -55,7 +55,7 @@ class UserInfoCommand extends Command {
                 { name: `Role(s) - ${roleCount}`, value: roles }
             )
             .setTimestamp();
-        
+
         message.channel.send(embed);
     }
 }

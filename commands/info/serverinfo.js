@@ -6,12 +6,12 @@ class ServerInfoCommand extends Command {
         super(client, {
             name: "serverinfo",
             aliases: ["server-info", "si"],
-            description: "Get information about the current server or a specific server",
+            description: "Display information about the current server or a specific server",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             guildOnly: true
         });
     }
-    
+
     run(message, args) {
         const functions = this.client.functions;
 
@@ -29,7 +29,7 @@ class ServerInfoCommand extends Command {
             'sydney': ':flag_au: Sydney',
             'southafrica': ':flag_za: South Africa'
         };
-        
+
         const notifications = {
             ALL: 'All',
             MENTIONS: 'Mentions'

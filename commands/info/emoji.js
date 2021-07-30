@@ -6,7 +6,7 @@ class EmojiInfoCommand extends Command {
         super(client, {
             name: "emoji",
             aliases: ["emojiinfo", "emoteinfo", "emote"],
-            description: "Get information about a server emote",
+            description: "Display information about a server emote",
             botPermissions: ["SEND_MESSAGES", "EMBED_LINKS"],
             guildOnly: true
         });
