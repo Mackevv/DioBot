@@ -71,7 +71,8 @@ class HelpCommand extends Command {
         const examples = functions.help(cmdHelp[command.settings.category][command.options.name]["EXAMPLES"], {
             prefix: prefix,
             authorId: message.author.id,
-            authorTag: message.author.tag
+            authorTag: message.author.tag,
+            channelId: message.channel.id
         });
 
         const cmdEmbed = new MessageEmbed()

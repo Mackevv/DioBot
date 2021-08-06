@@ -38,5 +38,12 @@
             "USAGE": "{{prefix}}calc <expression>",
             "EXAMPLES": "{{prefix}}calc 1 + 1\n{{prefix}}calc 20 × 2 - 8\n{{prefix}}calculate (5 x 9) / 10"
         }
+    },
+    "stand": {
+        "theworld": {
+            "USAGE": "{{prefix}}theworld <duration> <?channel>",
+            "EXAMPLES": "{{prefix}}theworld 5\n{{prefix}}theworld 8 <#{{channelId}}>\n{{prefix}}theworld 8 {{channelId}}\nzawarudo 8",
+            "NOTES": "The duration must be specified in seconds, 1 second counted by Dio equals 3 seconds in reality. Members will not be able to send messages in the target channel during the activation of this command."
+        }
     }
 }

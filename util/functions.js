@@ -33,6 +33,21 @@ module.exports = {
         return member;
     },
 
+    getChannel(string, guild) {
+        if (!string || typeof string !== 'string') return;
+
+        let channel = guild.channels.cache.get(string);
+
+        const channelExp = string.match(/^<#(\d+)>$/);
+
+        if (channelExp) {
+            channel = guild.channels.cache.get(channelExp[1]);
+            return channel;
+        }
+
+        return channel;
+    },
+
     formatDate(d) {
         const months = [
             'January',
