@@ -38,7 +38,7 @@ class TheWorldCommand extends Command {
                 duration: 2.3
             },
             {
-                name: 'knifesTheWorld',
+                name: 'knivesTheWorld',
                 gif: 'https://media.giphy.com/media/qRtbKx34WaPxFp9HQu/giphy.gif',
                 replies: ['... ZA WARUDO!'],
                 duration: 3.3
