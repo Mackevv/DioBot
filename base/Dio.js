@@ -1,12 +1,11 @@
 const { Client, Intents, Collection } = require('discord.js');
-const intentsList = [
+const intents = new Intents([
     'GUILDS',
     'GUILD_MESSAGES',
     'GUILD_PRESENCES',
     'GUILD_MEMBERS',
     'DIRECT_MESSAGES'
-];
-const intents = new Intents(intentsList);
+]);
 
 const fs = require('fs');
 const path = require('path');
