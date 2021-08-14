@@ -12,9 +12,7 @@ const path = require('path');
 
 class Dio extends Client {
     constructor() {
-        super({
-            ws: { intents: intents }
-        });
+        super({ intents: intents });
         this.config = require('@root/config');
         this.commands = new Collection();
         this.aliases = new Collection();

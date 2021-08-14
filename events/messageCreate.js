@@ -26,7 +26,6 @@ module.exports = class {
                     guildOnly
                 } = options;
 
-
                 if (permissions.length) {
                     if (typeof permissions === 'string') {
                         permissions = [permissions];
@@ -42,7 +41,7 @@ module.exports = class {
                 }
 
                 for (const permission of permissions) {
-                    if (!message.member.hasPermission(permission)) {
+                    if (!message.member.permissions.has(permission)) {
                         if (permissionError) {
                             return message.channel.send(permissionError);
                         } else {
@@ -52,13 +51,13 @@ module.exports = class {
                 }
 
                 for (const botPermission of botPermissions) {
-                    const bot = message.guild.member(this.client.user.id);
-                    if (!bot.hasPermission(botPermission)) {
+                    const bot = message.guild.members.cache.get(this.client.user.id);
+                    if (!bot.permissions.has(botPermission)) {
                         return message.reply("I do not have the required permissions to execute this command.");
                     }
                 }
 
-                if (guildOnly && message.channel.type === 'dm') {
+                if (guildOnly && message.channel.type === 'DM') {
                     return message.reply("you can't use this command in direct message.");
                 }
 

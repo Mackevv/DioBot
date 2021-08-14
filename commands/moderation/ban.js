@@ -38,7 +38,7 @@ class BanCommand extends Command {
 		if (member) {
 			const targerUserRolePos = member.roles.highest.position;
 			const authorRolePos = message.member.roles.highest.position;
-			if (message.guild.ownerID !== message.author.id && !(authorRolePos > targerUserRolePos)) {
+			if (message.guild.ownerId !== message.author.id && !(authorRolePos > targerUserRolePos)) {
 				return message.replyError("you cannot ban a member with a higher or equal role than you.");
 			}
 

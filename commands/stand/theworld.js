@@ -53,36 +53,40 @@ class TheWorldCommand extends Command {
             .setImage(gif.gif)
             .setFooter(`Source : JoJo's Bizarre Adventure | ${this.client.config.prefix}${this.options.name}`)
 
-        const msg = await targetChannel.send(embed);
+        const msg = await targetChannel.send({ embeds: [embed] });
 
         const validPermOverwrites = [];
-        targetChannel.permissionOverwrites.forEach((perms) => {
+        for (const perms of targetChannel.permissionOverwrites.cache.map(p => p)) {
             if (targetChannel.permissionsFor(perms.id).has('SEND_MESSAGES') || message.guild.roles.everyone.id === perms.id) {
-                validPermOverwrites.push(perms.id);
+                const userOrRole = message.guild.members.cache.get(perms.id) || message.guild.roles.cache.get(perms.id);
+                validPermOverwrites.push(userOrRole);
             }
-        });
+        }
 
         setTimeout(() => {
             embed.setImage('');
             embed.setFooter('');
 
             for (const perm of validPermOverwrites) {
-                message.channel.updateOverwrite(perm, { SEND_MESSAGES: false });
+                targetChannel.permissionOverwrites.edit(perm, { SEND_MESSAGES: false });
             }
+            targetChannel.permissionOverwrites.create(this.client.user, { SEND_MESSAGES: true })
+                .catch((e) => console.error(e));
 
             let i = 0;
             const interval = setInterval(() => {
-                i += 1;
-                embed.setTitle(i === 1 ? "1 second has passed" : `${i} seconds have passed`);
-                msg.edit(embed);
-
-                if (i === duration) {
+                if (i + 1 === duration) {
                     clearInterval(interval);
                     embed.setTitle("Time has begun to move again");
-                    msg.edit(embed);
+                    msg.edit({ embeds: [embed] });
                     for (const perm of validPermOverwrites) {
-                        message.channel.updateOverwrite(perm, { SEND_MESSAGES: true });
+                        targetChannel.permissionOverwrites.edit(perm, { SEND_MESSAGES: true });
                     }
+                    targetChannel.permissionOverwrites.delete(this.client.user);
+                } else {
+                    i += 1;
+                    embed.setTitle(i === 1 ? "1 second has passed" : `${i} seconds have passed`);
+                    msg.edit({ embeds: [embed] });
                 }
             }, 3000);
         }, 1000 * gif.duration);

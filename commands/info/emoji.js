@@ -43,7 +43,7 @@ class EmojiInfoCommand extends Command {
             )
             .defaultFooter(this.options.name);
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 }
 
