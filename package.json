@@ -14,9 +14,11 @@
     "fs": "0.0.1-security",
     "mathjs": "^9.4.4",
     "module-alias": "^2.2.2",
-    "nodemon": "^2.0.12",
     "path": "^0.12.7",
     "util": "^0.12.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   },
   "_moduleAliases": {
     "@root": ".",
