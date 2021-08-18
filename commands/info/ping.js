@@ -16,7 +16,7 @@ class PingCommand extends Command {
             .setColor(this.client.config.embed.color)
             .setDescription(":stopwatch: **The World !**");
 
-        message.channel.send(embed).then((resultMsg) => {
+        message.channel.send({ embeds: [embed] }).then((resultMsg) => {
             setTimeout(() => {
                 const ping = resultMsg.createdTimestamp - message.createdTimestamp;
 
@@ -27,7 +27,7 @@ class PingCommand extends Command {
                         { name: "API latency :", value: `${this.client.ws.ping} ms` }
                     );
 
-                resultMsg.edit(resultEmbed);
+                resultMsg.edit({ embeds: [resultEmbed] });
             }, 1300);
         });
     }

@@ -37,7 +37,7 @@ class HelpCommand extends Command {
                 embed.addField(functions.ucfirst(category), `\`${prefix}help ${category}\``);
             }
 
-            return message.channel.send(embed);
+            return message.channel.send({ embeds: [embed] });
         }
 
         // Display commands related to one category
@@ -57,7 +57,7 @@ class HelpCommand extends Command {
                     categoryEmbed.addField(`${prefix}${command.options.name}`, `${command.options.description}.`);
                 });
 
-                return message.channel.send(categoryEmbed);
+                return message.channel.send({ embeds: [categoryEmbed] });
             }
         }
 
@@ -99,7 +99,7 @@ class HelpCommand extends Command {
             cmdEmbed.addField('Notes', notes);
         }
 
-        return message.channel.send(cmdEmbed);
+        return message.channel.send({ embeds: [cmdEmbed] });
     }
 }
 

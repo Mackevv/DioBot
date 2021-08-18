@@ -39,11 +39,11 @@ class CalcCommand extends Command {
             .defaultColor()
             .addFields(
                 { name: "Calculation :", value: `\`\`\`${args.join(" ")}\`\`\`` },
-                { name: "Result :", value: result }
+                { name: "Result :", value: result.toString() }
             )
             .defaultFooter(this.options.name[0]);
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 }
 

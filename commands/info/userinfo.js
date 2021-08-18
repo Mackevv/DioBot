@@ -22,15 +22,20 @@ class UserInfoCommand extends Command {
             offline: `${this.client.emotes.status.offline} Offline`
         }
 
-        const targetMember = args[0] ? await functions.getMember(args[0], message.guild) : message.guild.member(message.author);
+        const targetMember = args[0] ? await functions.getMember(args[0], message.guild) : message.guild.members.cache.get(message.author.id);
         if (!targetMember) {
             return message.replyError("please provide a valid member mention, id or tag.")
         }
 
         // Get user custom status and activity
-        const activities = targetMember.presence.activities;
-        const customStatus = activities.find(a => a.type === 'CUSTOM_STATUS') ? activities.find(a => a.type === 'CUSTOM_STATUS').state : 'None';
-        const activity = activities.find(a => a.type === 'PLAYING' || a.type === 'WATCHING' || a.type === 'LISTENING') ? activities.find(a => a.type === 'PLAYING' || a.type === 'WATCHING' || a.type === 'LISTENING').name : 'None';
+        let customStatus = "None";
+        let activity = "None";
+        if (targetMember.presence) {
+            const activities = targetMember.presence.activities;
+            customStatus = activities.find(a => a.type === 'CUSTOM') ? activities.find(a => a.type === 'CUSTOM').state : 'None';
+            activity = activities.find(a => a.type === 'PLAYING' || a.type === 'WATCHING' || a.type === 'LISTENING') ? activities.find(a => a.type === 'PLAYING' || a.type === 'WATCHING' || a.type === 'LISTENING').name : 'None';
+        }
+        console.log(targetMember.presence ? targetMember.presence : 'No presence')
 
         // Get user roles except @everyone role
         let roles = targetMember.roles.cache.map(r => `${r}`).join(', ').replace(', @everyone', '');
@@ -47,7 +52,7 @@ class UserInfoCommand extends Command {
                 { name: 'ID', value: targetMember.id, inline: true },
                 { name: 'Bot', value: targetMember.user.bot ? 'Yes' : 'No', inline: true },
                 { name: 'Nickname', value: targetMember.nickname ? targetMember.nickname : 'None', inline: true },
-                { name: 'Status', value: status[targetMember.presence.status], inline: false },
+                { name: 'Status', value: targetMember.presence ? status[targetMember.presence.status] : status["offline"], inline: false },
                 { name: 'Custom Status', value: customStatus },
                 { name: 'Activity', value: activity },
                 { name: 'Created Date', value: functions.formatDate(targetMember.user.createdAt) },
@@ -56,7 +61,7 @@ class UserInfoCommand extends Command {
             )
             .setTimestamp();
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 }
 

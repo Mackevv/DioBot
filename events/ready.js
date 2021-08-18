@@ -13,10 +13,10 @@ module.exports = class {
             const activity = activities[Math.floor(Math.random() * activities.length)];
             this.client.user.setPresence({
                 status: 'online',
-                activity: {
+                activities: [{
                     name: activity,
                     type: 'WATCHING',
-                }
+                }]
             });
         }, 15000);
     }

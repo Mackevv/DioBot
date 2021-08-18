@@ -36,7 +36,7 @@ class KickCommand extends Command {
         // Verify if the message author has a higher role than the target user
         const targetMemberRolePos = targetMember.roles.highest.position;
         const authorRolePos = message.member.roles.highest.position;
-        if (message.guild.ownerID !== message.author.id && !(authorRolePos > targetMemberRolePos)) {
+        if (message.guild.ownerId !== message.author.id && !(authorRolePos > targetMemberRolePos)) {
             return message.replyError("you cannot kick a member with a higher or equal role than you.");
         }
 
