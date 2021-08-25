@@ -35,7 +35,6 @@ class UserInfoCommand extends Command {
             customStatus = activities.find(a => a.type === 'CUSTOM') ? activities.find(a => a.type === 'CUSTOM').state : 'None';
             activity = activities.find(a => a.type === 'PLAYING' || a.type === 'WATCHING' || a.type === 'LISTENING') ? activities.find(a => a.type === 'PLAYING' || a.type === 'WATCHING' || a.type === 'LISTENING').name : 'None';
         }
-        console.log(targetMember.presence ? targetMember.presence : 'No presence')
 
         // Get user roles except @everyone role
         let roles = targetMember.roles.cache.map(r => `${r}`).join(', ').replace(', @everyone', '');
